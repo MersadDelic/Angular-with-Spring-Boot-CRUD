@@ -1,0 +1,23 @@
+
+
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Title</th>
+    <th scope="col">Description</th>
+    <th scope="col">Content</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let element of postList">
+    <th scope="row">-</th>
+    <td>{{element.title}}</td>
+    <td>{{element.description}}</td>
+    <td>{{element.content}}</td>
+  </tr>
+
+  </tbody>
+</table>
+
+
