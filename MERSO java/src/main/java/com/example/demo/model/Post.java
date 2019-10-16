@@ -1,7 +1,9 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,20 +14,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "posts")
-public class Post implements Serializable {
+@Table (name = "posts")
+@JsonIgnoreProperties (
+        value = {"createdAt", "updatedAt"},
+        allowGetters = true)
+@EntityListeners (AuditingEntityListener.class)
+public class Post implements Serializable
+{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Temporal (TemporalType.TIMESTAMP)
+    @Column (name = "created_at", nullable = false, updatable = false)
     @CreatedDate
     private Date createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
+    @Temporal (TemporalType.TIMESTAMP)
+    @Column (name = "updated_at", nullable = false)
     @LastModifiedDate
     private Date updatedAt;
 
@@ -34,78 +41,92 @@ public class Post implements Serializable {
     private String content;
 
     @NotNull
-    @Size(max = 250)
+    @Size (max = 250)
     private String description;
 
     @NotNull
-    @Size(max = 100)
-    @Column(unique = true)
+    @Size (max = 100)
+    @Column (unique = true)
     private String title;
 
 
-
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany (cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "post")
     private Set<Comment> comments = new HashSet<>();
 
-    public Post() {
+    public Post()
+    {
     }
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
 
-    public Date getCreatedAt() {
+    public Date getCreatedAt()
+    {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Date createdAt)
+    {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public Date getUpdatedAt()
+    {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Date updatedAt)
+    {
         this.updatedAt = updatedAt;
     }
 
-    public String getContent() {
+    public String getContent()
+    {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(String content)
+    {
         this.content = content;
     }
 
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description)
+    {
         this.description = description;
     }
 
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title)
+    {
         this.title = title;
     }
 
-    public Set<Comment> getComments() {
+    public Set<Comment> getComments()
+    {
         return comments;
     }
 
-    public void setComments(Set<Comment> comments) {
+    public void setComments(Set<Comment> comments)
+    {
         this.comments = comments;
     }
 }
