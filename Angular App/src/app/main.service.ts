@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -8,16 +9,19 @@ import {Router} from "@angular/router";
 })
 export class MainService {
 
-  constructor(private http: HttpClient, private router: Router) {
+  public API = '//localhost:8080/api';
+  public api = this.API;
+
+  constructor(private http: HttpClient) {
   }
 
 
-  savePost(post: any) {
-    return this.http.post(`http://localhost:8080/api/posts`, post);
+  savePost(post: any): Observable<any> {
+    return this.http.post(this.API + '/posts', post);
   }
 
 
-  getPost() {
-    return this.http.get('http://localhost:8080/api/getposts');
+  getPost(): Observable<any> {
+    return this.http.get(this.API + '/getposts');
   }
 }
