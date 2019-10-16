@@ -43,7 +43,7 @@ export class PostComponent implements OnInit {
     console.log(post);
 
 
-    this.postForm.reset();
+
 
     this.mainService.savePost(post).subscribe(
       () => {
