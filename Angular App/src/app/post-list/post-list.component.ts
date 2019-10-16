@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MainService} from "../main.service";
 import {Router} from "@angular/router";
-
+import {Post} from "../post";
 
 @Component({
   selector: 'app-post-list',
@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
- postList: any;
+  postList: Post[];
 
   constructor(private mainService: MainService, private router: Router) { }
 
@@ -18,10 +18,9 @@ export class PostListComponent implements OnInit {
   }
 
   getPosts(){
-    this.mainService.getPost().subscribe(
+    this.mainService.getPosts().subscribe(
       accResp => {
         this.postList = accResp;
-
       },
       error1 => console.log(error1)
     );
