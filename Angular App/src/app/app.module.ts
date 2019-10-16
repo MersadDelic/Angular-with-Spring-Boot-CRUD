@@ -11,7 +11,7 @@ import {MainService} from "./main.service";
 import { HttpClientModule} from "@angular/common/http";
 import { PostListComponent } from './post-list/post-list.component';
 import { CommentsComponent } from './comments/comments.component';
-import { PostModalComponent } from './post-modal/post-modal.component';
+
 
 
 @NgModule({
@@ -20,8 +20,8 @@ import { PostModalComponent } from './post-modal/post-modal.component';
     DashboardComponent,
     PostComponent,
     PostListComponent,
-    CommentsComponent,
-    PostModalComponent,
+    CommentsComponent
+
 
 
   ],

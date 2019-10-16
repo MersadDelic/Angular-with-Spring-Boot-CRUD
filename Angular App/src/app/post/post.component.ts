@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MainService} from "../main.service";
 import {Router} from "@angular/router";
-import {all} from "codelyzer/util/function";
+import {PostListComponent } from "../post-list/post-list.component";
 
 @Component({
   selector: 'app-post',
@@ -12,6 +12,7 @@ import {all} from "codelyzer/util/function";
 export class PostComponent implements OnInit {
   showModal: any;
   postForm: FormGroup;
+  postList: any;
 
 
 
@@ -41,8 +42,6 @@ export class PostComponent implements OnInit {
 
     };
     console.log(post);
-
-
 
 
     this.mainService.savePost(post).subscribe(
