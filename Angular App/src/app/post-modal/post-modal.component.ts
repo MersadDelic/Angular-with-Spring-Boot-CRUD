@@ -1,21 +1,15 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {MainService} from "../main.service";
+import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {all} from "codelyzer/util/function";
+import {MainService} from "../main.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  selector: 'app-post-modal',
+  templateUrl: './post-modal.component.html',
+  styleUrls: ['./post-modal.component.css']
 })
-export class PostComponent implements OnInit {
-  showModal: any;
+export class PostModalComponent implements OnInit {
   postForm: FormGroup;
-
-
-
-
 
   constructor(private route: Router, private mainService: MainService) {
     this.postForm = new FormGroup({
@@ -26,7 +20,8 @@ export class PostComponent implements OnInit {
     });
 
   }
-      ngOnInit() {
+
+  ngOnInit() {
 
   }
 
@@ -42,8 +37,6 @@ export class PostComponent implements OnInit {
     };
     console.log(post);
 
-    this.postForm.reset();
-
     this.mainService.savePost(post).subscribe(
       () => {
       },
@@ -51,5 +44,4 @@ export class PostComponent implements OnInit {
     );
 
   }
-
 }

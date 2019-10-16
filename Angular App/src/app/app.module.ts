@@ -10,8 +10,8 @@ import { PostComponent } from './post/post.component';
 import {MainService} from "./main.service";
 import { HttpClientModule} from "@angular/common/http";
 import { PostListComponent } from './post-list/post-list.component';
-import { MersoComponent } from './merso/merso.component';
 import { CommentsComponent } from './comments/comments.component';
+import { PostModalComponent } from './post-modal/post-modal.component';
 
 
 @NgModule({
@@ -20,8 +20,8 @@ import { CommentsComponent } from './comments/comments.component';
     DashboardComponent,
     PostComponent,
     PostListComponent,
-    MersoComponent,
     CommentsComponent,
+    PostModalComponent,
 
 
   ],
