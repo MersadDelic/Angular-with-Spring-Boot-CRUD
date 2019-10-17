@@ -42,6 +42,8 @@ export class CreatePostComponent implements OnInit {
 
         this.refreshPage(); // refreshuj stranicu - ne valja rjesenje !!!
 
+        // this.postService.postsUpdated.next([...this])
+
       },
       err => console.log(err)
     );

@@ -12,9 +12,9 @@ import {Post} from "../post";
   providedIn: 'root'
 })
 export class PostListComponent implements OnInit {
-  postList: Post[];
+  postList: Post[] = [];
 
-  constructor(private mainService: PostService, private router: Router) {
+  constructor(private postService: PostService, private router: Router) {
   }
 
   ngOnInit() {
@@ -22,12 +22,20 @@ export class PostListComponent implements OnInit {
   }
 
   getPosts() {
-    this.mainService.getPosts().subscribe(
+    this.postService.getPosts().subscribe(
       accResp => {
         this.postList = accResp;
       },
       error1 => console.log(error1)
     );
   }
+
+
+  /*this.postSub = this.postService.getPostUpdateListener()
+    .subscribe(
+      (posts: Post[]) => {
+        this.postList = posts;
+      }
+    );*/
 
 }
