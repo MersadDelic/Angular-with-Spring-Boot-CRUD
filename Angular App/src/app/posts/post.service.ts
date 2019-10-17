@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class MainService {
+export class PostService {
 
   public API = '//localhost:9090/api';
   public api = this.API;

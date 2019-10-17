@@ -6,10 +6,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
-import {PostComponent} from './post/post.component';
-import {MainService} from "./main.service";
+import {CreatePostComponent} from './posts/create-post/create-post.component';
+import {PostService} from "./posts/post.service";
 import {HttpClientModule} from "@angular/common/http";
-import {PostListComponent} from './post-list/post-list.component';
+import {PostListComponent} from './posts/post-list/post-list.component';
 import {CommentsComponent} from './comments/comments.component';
 
 
@@ -17,7 +17,7 @@ import {CommentsComponent} from './comments/comments.component';
   declarations: [
     AppComponent,
     DashboardComponent,
-    PostComponent,
+    CreatePostComponent,
     PostListComponent,
     CommentsComponent
 
@@ -31,7 +31,7 @@ import {CommentsComponent} from './comments/comments.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [MainService, PostListComponent],
+  providers: [PostService, PostListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

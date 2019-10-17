@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {MainService} from "../main.service";
+import {PostService} from "../post.service";
 import {Router} from "@angular/router";
 import {PostListComponent} from "../post-list/post-list.component";
 import {Post} from "../post";
 
 @Component({
   selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  templateUrl: './create-post.component.html',
+  styleUrls: ['./create-post.component.css']
 })
-export class PostComponent implements OnInit {
+export class CreatePostComponent implements OnInit {
   showModal: any;
   postForm: FormGroup;
 
-  constructor(private route: Router, private mainService: MainService, private postListComponent: PostListComponent) {
+  constructor(private route: Router, private postService: PostService, private postListComponent: PostListComponent) {
     this.postForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'description': new FormControl(null, [Validators.required]),
@@ -32,18 +32,22 @@ export class PostComponent implements OnInit {
     post.description = this.postForm.value.description;
     post.content = this.postForm.value.content;
 
-    console.log('post created:' + post);
+    console.log('create-post created:' + post);
 
-    this.mainService.savePost(post).subscribe(
+    this.postService.savePost(post).subscribe(
       () => {
         console.log('postojeca lista:' + this.postListComponent.postList);
 
         // this.postListComponent.postList.push(post);
 
-        window.location.reload(); // refreshuj stranicu - ne valja rjesenje !!!
+        this.refreshPage(); // refreshuj stranicu - ne valja rjesenje !!!
 
       },
       err => console.log(err)
     );
+  }
+
+  private refreshPage(): void {
+    window.location.reload();
   }
 }

@@ -18,16 +18,16 @@ export class Post {
 }
 
 /*
-*     novi post se moze kreirati na vise nacina
+*     novi create-post se moze kreirati na vise nacina
 *
 *
-*     let p = new Post();  // samo ako nemamo konstruktora definisanog
+*     let p = new PostModel();  // samo ako nemamo konstruktora definisanog
 *     p.title = 'naslov';
 *
 *
 *     II nacin
 *
-*     let p = new Post('naslov', 'opis', 'sadrzaj');  -- jer imamo konstruktor
+*     let p = new PostModel('naslov', 'opis', 'sadrzaj');  -- jer imamo konstruktor
 *
 *
 *
