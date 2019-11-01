@@ -6,15 +6,19 @@
     <th scope="col">#</th>
     <th scope="col">Title</th>
     <th scope="col">Description</th>
-    <th scope="col">Content</th>
+
+    <th scope="col">Action</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let element of postList">
+  <tr *ngFor="let post of postList">
     <th scope="row">-</th>
-    <td>{{element.title}}</td>
-    <td>{{element.description}}</td>
-    <td>{{element.content}}</td>
+    <td>{{post.title}}</td>
+    <td>{{post.description}}</td>
+    <td> <button class="btn btn-primary" (click)="showModal=true" data-toggle="modal" data-target="#Modal"> Edit </button>
+      <button class="btn btn-danger" style="margin-left: 10px"> Delete </button>
+      <button (click)="postdetails(post.id)" class="btn btn-success" style="margin-left: 10px">Details</button></td>
+
   </tr>
 
   </tbody>

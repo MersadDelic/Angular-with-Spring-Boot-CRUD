@@ -8,9 +8,10 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {CreatePostComponent} from './posts/create-post/create-post.component';
 import {PostService} from "./posts/post.service";
-import {HttpClientModule} from "@angular/common/http";
 import {PostListComponent} from './posts/post-list/post-list.component';
 import {CommentsComponent} from './comments/comments.component';
+import { PostDetailsComponent } from './posts/post-details/post-details.component';
+import { UpdatePostComponent } from './posts/update-post/update-post.component';
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import {CommentsComponent} from './comments/comments.component';
     DashboardComponent,
     CreatePostComponent,
     PostListComponent,
-    CommentsComponent
+    CommentsComponent,
+    PostDetailsComponent,
+    UpdatePostComponent
 
 
   ],
@@ -29,7 +32,7 @@ import {CommentsComponent} from './comments/comments.component';
     ReactiveFormsModule,
     RouterModule,
     AppRoutingModule,
-    HttpClientModule
+
   ],
   providers: [PostService, PostListComponent],
   bootstrap: [AppComponent]

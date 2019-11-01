@@ -1,0 +1,18 @@
+<h2>Post Details</h2>
+
+<hr/>
+<div *ngIf="post">
+  <div>
+    <label><b>Title: </b></label> {{post.title}}
+  </div>
+  <div>
+    <label><b>Description: </b></label> {{post.description}}
+  </div>
+  <div>
+    <label><b>Content: </b></label> {{post.content}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Post List</button><br>

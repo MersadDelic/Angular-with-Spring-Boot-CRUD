@@ -13,6 +13,7 @@ import {Post} from "../post";
 export class CreatePostComponent implements OnInit {
   showModal: any;
   postForm: FormGroup;
+  post: Post = new Post();
 
   constructor(private route: Router, private postService: PostService, private postListComponent: PostListComponent) {
     this.postForm = new FormGroup({
@@ -47,9 +48,13 @@ export class CreatePostComponent implements OnInit {
       },
       err => console.log(err)
     );
+    this.gotoList();
   }
 
   private refreshPage(): void {
     window.location.reload();
+  }
+  gotoList() {
+    this.route.navigate(['/posts']);
   }
 }

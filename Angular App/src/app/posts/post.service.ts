@@ -20,4 +20,8 @@ export class PostService {
   getPosts(): Observable<any> {
     return this.http.get(this.API + '/getposts');
   }
+
+  getPost(id: number): Observable<any> {
+    return this.http.get(this.API + `/getpost/${id}`);
+  }
 }
