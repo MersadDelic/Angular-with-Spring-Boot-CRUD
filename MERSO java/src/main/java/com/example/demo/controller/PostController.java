@@ -9,8 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -20,33 +19,27 @@ public class PostController {
     @Autowired
     private PostRepository postRepository;
 
-    @GetMapping("/getposts")
+    @GetMapping("/posts")
     public ResponseEntity<?> getAllPosts() {
         return new ResponseEntity<>(
                 postRepository.findAll(),
                 HttpStatus.OK);
     }
 
-   /* @GetMapping("/getposts")
-    public List<Post> findAll() {
-        return postRepository.findAll();
-    } */
+  @GetMapping("/posts/{postId}")
+  public ResponseEntity<?> findById(@PathVariable Long postId) {
+    Optional<Post> post = postRepository.findById(postId);
 
-   @GetMapping("/getpost/{id}")
-   public ResponseEntity<?> findPostById(@PathVariable Long postId) {
-       Post post = postRepository.findPostById(postId);
-       if(post == null) {
-
-           return new ResponseEntity<>(post, HttpStatus.NOT_FOUND);
-       } else {
-           return new ResponseEntity<>(post, HttpStatus.OK);
-       }
-   }
-
+    if (post.isPresent())
+    {
+      return ResponseEntity.ok(post);
+    }
+    return ResponseEntity.notFound().build();
+  }
 
     @PostMapping("/posts")
-    public Post createPost(@Valid @RequestBody Post post) {
-        return postRepository.save(post);
+    public ResponseEntity<?> createPost(@RequestBody Post post) {
+        return new ResponseEntity<>(postRepository.save(post), HttpStatus.OK);
     }
 
     @PutMapping("/posts/{postId}")

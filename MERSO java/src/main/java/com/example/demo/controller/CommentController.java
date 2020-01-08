@@ -11,8 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class CommentController {
 
     @Autowired
@@ -22,9 +25,8 @@ public class CommentController {
     private PostRepository postRepository;
 
     @GetMapping("/posts/{postId}/comments")
-    public Page<Comment> getAllCommentsByPostId(@PathVariable(value = "postId") Long postId,
-                                                Pageable pageable) {
-        return commentRepository.findByPostId(postId, pageable);
+    public List<Comment> getAllCommentsByPostId(@PathVariable(value = "postId") Long postId) {
+        return commentRepository.findByPostId(postId);
     }
 
     @PostMapping("/posts/{postId}/comments")
@@ -53,7 +55,7 @@ public class CommentController {
     @DeleteMapping("/posts/{postId}/comments/{commentId}")
     public ResponseEntity<?> deleteComment(@PathVariable (value = "postId") Long postId,
                                            @PathVariable (value = "commentId") Long commentId) {
-        return commentRepository.findByIdAndPostId(commentId, postId).map(comment -> {
+        return commentRepository.findByPostIdAndId(postId, commentId).map(comment -> {
             commentRepository.delete(comment);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("Comment not found with id " + commentId + " and postId " + postId));
