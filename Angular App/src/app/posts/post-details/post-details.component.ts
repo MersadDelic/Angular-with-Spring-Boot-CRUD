@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from "../post";
+import { Post } from '../post';
 import { Router, ActivatedRoute } from '@angular/router';
-import {PostService} from "../post.service";
+import {PostService} from '../post.service';
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html',
@@ -9,24 +9,32 @@ import {PostService} from "../post.service";
 })
 export class PostDetailsComponent implements OnInit {
 
-  id: number;
+
   post: Post;
 
-  constructor(private route: ActivatedRoute, private postservice: PostService, private router: Router) { }
+  constructor(private route: ActivatedRoute,
+              private postservice: PostService,
+              private router: Router) { }
+
 
   ngOnInit() {
-    this.post = new Post();
-
-    this.id = this.route.snapshot.params['id'];
-
-    this.postservice.getPost(this.id)
-      .subscribe(data => {
-        console.log(data)
-        this.post = data;
-      }, error => console.log(error));
+    this.getmyPost();
   }
 
-  list(){
-    this.router.navigate(['post']);
+  getmyPost() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.postservice.getPost(id)
+      .subscribe(
+        post => { this.post = post;
+        },
+        error => console.log(error)
+      );
+  }
+
+
+
+  list() {
+    this.router.navigate(['postlist']);
   }
 }
+

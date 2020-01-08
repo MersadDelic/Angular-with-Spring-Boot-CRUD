@@ -1,12 +1,22 @@
 
+<div *ngFor="let post of postList" class="container-fluid">
 
+  <h1>{{post.title}}</h1>
+  <h5>{{post.description}}</h5>
+  <td> <button class="btn btn-primary" (click)="showModal=true" data-toggle="modal" data-target="#Modal"> Edit </button>
+    <button class="btn btn-danger" style="margin-left: 10px"> Delete </button>
+    <button (click)="postdetails(post.id)" class="btn btn-success" style="margin-left: 10px">Details</button></td>
+  <br>
+</div>
+
+
+<!--
 <table class="table">
   <thead class="thead-dark">
   <tr>
     <th scope="col">#</th>
     <th scope="col">Title</th>
     <th scope="col">Description</th>
-
     <th scope="col">Action</th>
   </tr>
   </thead>
@@ -23,5 +33,66 @@
 
   </tbody>
 </table>
+-->
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" (click)="showModal=true" data-toggle="modal" data-target="#Modal">
+  Add new post
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal" [ngClass]="{'show':showModal}"  data-keyboard="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Post</h5>
+
+      </div>
+      <div class="modal-body">
+        <div [formGroup]="postForm">
+
+
+
+          <div class="form-group">
+            <label for="title">Post Title</label>
+            <input type="text" class="form-control"
+                   name="title"
+                   id="title"
+                   formControlName="title">
+
+          </div>
+
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control"
+                   name="description"
+                   id="description"
+                   formControlName="description">
+
+          </div>
+
+
+          <div class="form-group">
+            <label for="content">Content</label>
+
+            <textarea rows="4" cols="50" type="text" class="form-control"
+                      name="content"
+                      id="content"
+                      formControlName="content">
+            </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" (click)="savePost()"  class="btn btn-primary" data-dismiss="modal" [disabled]="!postForm.valid">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 
